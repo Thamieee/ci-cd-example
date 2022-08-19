@@ -24,7 +24,7 @@ jobs:
       - attach_workspace:
           at: .
       - checkout
-      - run: cd ./app && npm run test
+      - run: cd ./app && npm run unittest
       - persist_to_workspace:
           root: .
           paths:
@@ -43,9 +43,9 @@ workflows:
   build_test_deploy:
     jobs:
       - build
-      - test:
+      - unittest:
           requires:
             - build
       - deploy:
           requires:
-            - test
+            - unittest
